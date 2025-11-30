@@ -4,7 +4,6 @@
 # We also will add some functionality like checking to see wether we have
 # a full line of identical symbol, wether the board is full, etc...
 class Board
-  attr_accessor :array
   attr_reader :winner_letter
 
   def initialize
@@ -37,6 +36,7 @@ class Board
 
   private
 
+  attr_accessor :array
   attr_writer :winner_letter
 
   def horizontal_line?
