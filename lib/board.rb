@@ -35,6 +35,22 @@ class Board
     false
   end
 
+  def down_diagonal_line?
+    element = array.first.first
+    return false if element == ' '
+
+    count = 1
+    array.each_with_index do |line, index|
+      next if index == 1
+
+      count += 1 if line[index] == element
+    end
+    self.winner_letter = element if count == 3
+    return true if count == 3
+
+    false
+  end
+
   private
 
   attr_writer :winner_letter
