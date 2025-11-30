@@ -5,9 +5,11 @@
 # a full line of identical symbol, wether the board is full, etc...
 class Board
   attr_accessor :array
+  attr_reader :winner_letter
 
   def initialize
     @array = Array.new(3) { Array.new(3, ' ') }
+    @winner_letter = nil
   end
 
   # rubocop: disable Metrics/AbcSize
@@ -19,4 +21,21 @@ class Board
     puts '-------------'
   end
   # rubocop: enable Metrics/AbcSize
+
+  def horizontal_line?
+    array.each do |line|
+      element = line.first
+      next if element == ' '
+
+      count = 1
+      2.times { |i| count += 1 if line[i + 1] == element }
+      self.winner_letter = element if count == 3
+      return true if count == 3
+    end
+    false
+  end
+
+  private
+
+  attr_writer :winner_letter
 end
