@@ -35,6 +35,18 @@ class Board
     false
   end
 
+  def vertical_line?
+    array.first.each_with_index do |element, element_index|
+      next if element == ' '
+
+      count = 1
+      2.times { |i| count += 1 if array.dig(i + 1, element_index) == element }
+      self.winner_letter = element if count == 3
+      return true if count == 3
+    end
+    false
+  end
+
   def down_diagonal_line?
     element = array.first.first
     return false if element == ' '
