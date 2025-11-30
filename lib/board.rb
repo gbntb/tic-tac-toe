@@ -28,6 +28,13 @@ class Board
     false
   end
 
+  def player_input(player, input)
+    parsed_input = input.chars.collect(&:to_i)
+    return nil unless array.dig(parsed_input.first, parsed_input.last) == ' '
+
+    array[parsed_input.first][parsed_input.last] = player.letter
+  end
+
   private
 
   attr_writer :winner_letter
