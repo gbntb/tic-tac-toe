@@ -22,6 +22,16 @@ class Board
   end
   # rubocop: enable Metrics/AbcSize
 
+  def line?
+    return true if horizontal_line? || vertical_line? || down_diagonal_line? || up_diagonal_line?
+
+    false
+  end
+
+  private
+
+  attr_writer :winner_letter
+
   def horizontal_line?
     array.each do |line|
       element = line.first
@@ -73,14 +83,4 @@ class Board
     end
     false
   end
-
-  def line?
-    return true if horizontal_line? || vertical_line? || down_diagonal_line? || up_diagonal_line?
-
-    false
-  end
-
-  private
-
-  attr_writer :winner_letter
 end
