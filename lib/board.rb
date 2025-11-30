@@ -63,6 +63,19 @@ class Board
     false
   end
 
+  def up_diagonal_line?
+    element = array.first.last
+    return false if element == ' '
+
+    count = 1
+    count += 1 if array.dig(1, 1) == element
+    count += 1 if array.last.first == element
+    self.winner_letter = element if count == 3
+    return true if count == 3
+
+    false
+  end
+
   private
 
   attr_writer :winner_letter
