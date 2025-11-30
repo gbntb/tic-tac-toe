@@ -74,6 +74,12 @@ class Board
     false
   end
 
+  def line?
+    return true if horizontal_line? || vertical_line? || down_diagonal_line? || up_diagonal_line?
+
+    false
+  end
+
   private
 
   attr_writer :winner_letter
