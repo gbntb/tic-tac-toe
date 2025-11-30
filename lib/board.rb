@@ -67,12 +67,10 @@ class Board
     element = array.first.last
     return false if element == ' '
 
-    count = 1
-    count += 1 if array.dig(1, 1) == element
-    count += 1 if array.last.first == element
-    self.winner_letter = element if count == 3
-    return true if count == 3
-
+    if (array.dig(1, 1) == element) && (array.dig(2, 0) == element)
+      self.winner_letter = element
+      return true
+    end
     false
   end
 
