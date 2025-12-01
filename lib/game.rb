@@ -12,6 +12,19 @@ class Game
     self.board = Board.new
   end
 
+  # rubocop: disable Metrics/AbcSize
+  def main_loop
+    until board.line? || board.full?
+      players.each do |player|
+        print "#{player.name} : "
+        board.player_input(player, gets.chomp)
+        board.display
+        break if board.line? || board.full?
+      end
+    end
+  end
+  # rubocop: enable Metrics/AbcSize
+
   private
 
   attr_writer :players, :board
