@@ -14,6 +14,7 @@ class Game
 
   # rubocop: disable Metrics/AbcSize
   def main_loop
+    board.display
     until board.line? || board.full?
       players.each do |player|
         print "#{player.name} : "
@@ -22,8 +23,18 @@ class Game
         break if board.line? || board.full?
       end
     end
+    game_over
   end
   # rubocop: enable Metrics/AbcSize
+
+  def game_over
+    if board.line?
+      winner = players.select { |player| player.letter == board.winner_letter }.first.name
+      puts "#{winner} wins the game!"
+    else
+      puts "It's a draw! Nobody wins, nobody loses!"
+    end
+  end
 
   private
 
