@@ -10,6 +10,12 @@ class Game
   def initialize
     self.players = [Player.new('Player 1', 'X'), Player.new('Player 2', 'O')]
     self.board = Board.new
+    welcome
+  end
+
+  def welcome
+    puts 'Welcome to Tic-Tac-Toe'
+    board.display
   end
 
   def main_loop
