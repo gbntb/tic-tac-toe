@@ -13,11 +13,6 @@ class Game
     welcome
   end
 
-  def welcome
-    puts 'Welcome to Tic-Tac-Toe'
-    board.display
-  end
-
   def main_loop
     until board.done?
       players.each do |player|
@@ -30,6 +25,15 @@ class Game
     game_over
   end
 
+  private
+
+  attr_writer :players, :board
+
+  def welcome
+    puts 'Welcome to Tic-Tac-Toe'
+    board.display
+  end
+
   def game_over
     if board.line?
       winner = players.select { |player| player.letter == board.winner_letter }.first.name
@@ -38,8 +42,4 @@ class Game
       puts "It's a draw! Nobody wins, nobody loses!"
     end
   end
-
-  private
-
-  attr_writer :players, :board
 end
