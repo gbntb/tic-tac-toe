@@ -25,6 +25,12 @@ class Board
     false
   end
 
+  def full?
+    return true if array.flatten.reject { |e| e == ' ' }.count == 9
+
+    false
+  end
+
   def player_input(player, input)
     parsed_input = input.chars.collect(&:to_i)
     return nil unless array.dig(parsed_input.first, parsed_input.last) == ' '
