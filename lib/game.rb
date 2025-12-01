@@ -12,20 +12,17 @@ class Game
     self.board = Board.new
   end
 
-  # rubocop: disable Metrics/AbcSize
   def main_loop
-    board.display
-    until board.line? || board.full?
+    until board.done?
       players.each do |player|
         print "#{player.name} : "
         board.player_input(player, gets.chomp)
         board.display
-        break if board.line? || board.full?
+        break if board.done?
       end
     end
     game_over
   end
-  # rubocop: enable Metrics/AbcSize
 
   def game_over
     if board.line?
