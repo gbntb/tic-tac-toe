@@ -31,6 +31,10 @@ class Board
     false
   end
 
+  def done?
+    line? || full?
+  end
+
   def player_input(player, input)
     parsed_input = input.chars.collect(&:to_i)
     return nil unless array.dig(parsed_input.first, parsed_input.last) == ' '
