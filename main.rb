@@ -2,5 +2,4 @@
 
 require_relative 'lib/game'
 
-game = Game.new
-game.main_loop
+Game.new.main_loop
