@@ -11,15 +11,13 @@ class Board
     @winner_letter = nil
   end
 
-  # rubocop: disable Metrics/AbcSize
   def display
     puts '-------------'
-    puts "- #{array.dig(0, 0)} - #{array.dig(0, 1)} - #{array.dig(0, 2)} -"
-    puts "- #{array.dig(1, 0)} - #{array.dig(1, 1)} - #{array.dig(1, 2)} -"
-    puts "- #{array.dig(2, 0)} - #{array.dig(2, 1)} - #{array.dig(2, 2)} -"
+    display_line(0)
+    display_line(1)
+    display_line(2)
     puts '-------------'
   end
-  # rubocop: enable Metrics/AbcSize
 
   def line?
     return true if horizontal_line? || vertical_line? || down_diagonal_line? || up_diagonal_line?
@@ -38,6 +36,10 @@ class Board
 
   attr_accessor :array
   attr_writer :winner_letter
+
+  def display_line(index)
+    puts "- #{array.dig(index, 0)} - #{array.dig(index, 1)} - #{array.dig(index, 2)} -"
+  end
 
   def horizontal_line?
     array.each do |line|
